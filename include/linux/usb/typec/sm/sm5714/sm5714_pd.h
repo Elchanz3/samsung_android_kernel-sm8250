@@ -787,7 +787,6 @@ struct sm5714_policy_data {
 	bool			abnormal_state;
 	u8				origin_message;
 	bool			sink_cap_received;
-	bool			source_cap_received;
 	bool			send_sink_cap;
 	bool			skip_ufp_svid_ack;
 };

@@ -610,15 +610,15 @@ static int psy_chg_get_health(struct sm5440_charger *sm5440)
 	dev_info(sm5440->dev, "%s: dc_state=0x%x\n", __func__, state);
 
 	if (state == SM_DC_ERR) {
-		health = POWER_SUPPLY_HEALTH_DC_ERR;
+		health = POWER_SUPPLY_EXT_HEALTH_DC_ERR;
 		dev_info(sm5440->dev, "%s: chg_state=%d, health=%d\n", __func__, state, health);
 	} else if (state > SM_DC_PRESET) {
 		op_mode = sm5440_get_op_mode(sm5440);
 		sm5440_read_reg(sm5440, SM5440_REG_STATUS3, &reg);
 		if (op_mode == 0x0)
-			health = POWER_SUPPLY_HEALTH_DC_ERR;
+			health = POWER_SUPPLY_EXT_HEALTH_DC_ERR;
 		else if (((reg >> 5) & 0x1) == 0x0) /* VBUS_POK status is disabled */
-			health = POWER_SUPPLY_HEALTH_DC_ERR;
+			health = POWER_SUPPLY_EXT_HEALTH_DC_ERR;
 
 		dev_info(sm5440->dev, "%s: op_mode=0x%x, status3=0x%x, health=%d\n",
 			__func__, op_mode, reg, health);

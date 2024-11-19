@@ -362,7 +362,7 @@ static int sec_direct_chg_get_property(struct power_supply *psy,
 	case POWER_SUPPLY_PROP_HEALTH:
 		if (charger->charging_source == SEC_DIRECT_CHG_CHARGING_SOURCE_DIRECT) {
 			psy_do_property(charger->pdata->direct_charger_name, get, psp, value);
-			if (value.intval == POWER_SUPPLY_HEALTH_DC_ERR) {
+			if (value.intval == POWER_SUPPLY_EXT_HEALTH_DC_ERR) {
 				charger->dc_retry_cnt++;
 				if (charger->dc_retry_cnt > 2) {
 					charger->dc_err = true;
